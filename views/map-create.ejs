@@ -1,0 +1,25 @@
+<% layout('layout/layout-min') %>
+<h1>Création d'un carte</h1>
+
+<div class="containerForm">
+    <form method="post" class="form-horizontal">
+        <p class="text-danger"><%- error.name %></p>
+        <div class="form-group">
+            <label for="name">Nom de la carte</label>
+            <input class="form-control" type="text" id="name" name="name" placeholder="Nom de la carte" value="<%- value.name %>" autocomplete="off" >
+        </div>
+        <p class="text-danger"><%- error.size %></p>
+        <div class="form-group">
+            <label for="size">Taille</label>
+            <input class="form-control" type="text" id="size" name="size" placeholder="Taille de la carte" value="<%- value.size %>" autocomplete="off" >
+        </div>
+        <p class="text-danger"><%- error.captcha %></p>
+        <center><div class="g-recaptcha" data-sitekey="6LfWewYTAAAAAKWM9EH_8lbXyGLRYxydBlqkbNiE"></div></center>
+        <p class="text-danger"><%- error.all %></p>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Créer !</button>
+        </div>
+    </form>
+</div>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>

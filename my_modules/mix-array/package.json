@@ -1,0 +1,11 @@
+{
+  "name": "mix-array",
+  "version": "1.0.0",
+  "description": "mix an array in a random order",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC"
+}

@@ -1,0 +1,25 @@
+<% layout('layout/layout-min') %>
+<h1>Connexion</h1>
+<div class="containerForm">
+    <form method="post" class="form-horizontal">
+        <p class="text-danger"><%- error %></p>
+        <div class="form-group">
+            <label for="pseudo">Pseudo</label>
+            <input type="text" class="form-control" name="pseudo" id="pseudo" placeholder="Pseudo" value="<%- pseudo %>">
+        </div>
+        <div class="form-group">
+            <label for="password">Mot de passe</label>
+            <input type="password" class="form-control" id="password" name="pass" placeholder="Mot de passe">
+        </div>
+
+        <div class="form-group">
+            <div class="checkbox">
+                <label><input type="checkbox" name="rememberMe" id="rememberMe" <% if (rememberMe) { %>checked<% } %> /> Se souvenir de moi</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <button type="submit" class="btn btn-default">Connexion</button>
+        </div>
+    </form>
+    <p>Pas encore de compte ? <a href="/sign">Inscription</a></p>
+</div>

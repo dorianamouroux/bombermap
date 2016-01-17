@@ -1,0 +1,24 @@
+<% layout('layout/layout-min') %>
+<h1>Inscription</h1>
+<form method="post" action="/sign">
+    <p class="text-danger"><%- error.pseudo %></p>
+    <div class="form-group">
+        <label for="pseudo">Pseudo</label>
+        <input type="text" class="form-control" id="pseudo" type="text" name="pseudo" placeholder="pseudo" value="<%- value.pseudo %>" autocomplete="off">
+    </div>
+    <p class="text-danger"><%- error.password %></p>
+    <div class="form-group">
+        <label for="pass1">Mot de passe</label>
+        <input type="password" class="form-control" id="pass1" placeholder="Mot de passe" name="pass1">
+    </div>
+    <div class="form-group">
+        <label for="pass2">Confirmation du mot de passe</label>
+        <input type="password" class="form-control" id="pass2" placeholder="Confirmation" name="pass2">
+    </div>
+    <p class="text-danger"><%- error.captcha %></p>
+    <div class="g-recaptcha" data-sitekey="6LfWewYTAAAAAKWM9EH_8lbXyGLRYxydBlqkbNiE"></div>
+    <br /><p class="text-danger"><%- error.global %></p>
+    <button type="submit" class="btn btn-default">Inscription</button>
+</form>
+
+<script src="https://www.google.com/recaptcha/api.js"></script>

@@ -1,0 +1,51 @@
+<% layout('layout/layout') %>
+<% var classBackground = ['floor', 'wall', 'wood']; %>
+<div class="map-view">
+    <div class="line-top">
+        <div class="left">
+            <h1 class="name"><%- map.name %></h1>
+        </div>
+        <div class="right">
+            <a href="/m/<%- map.name %>/download"><button type="button" class="btn btn-success">Télécharger</button></a>
+            <button type="button" class="btn btn-primary" onclick="openLightbox()">Détails</button>
+            <% if (session.user != undefined && session.user._id == map.madeBy._id) { %>
+            <a href="/map/<%- map.name %>/edit"><button type="button" class="btn btn-info">Modifier</button></a>
+            <% } %>
+            <a href="/u/<%- map.madeBy.pseudo %>"><button type="button" class="btn btn-warning">auteur : <%- map.madeBy.pseudo %></button></a>
+        </div>
+    </div>
+    <p class="thickLeftBorder description">Description : <%- map.description %></p>
+    <div class="image"><img src="/images/maps_pic/<%- map.name %>.<%- map.extension %>" /></div>
+    <p class="thickLeftBorder created">
+        Crée le <%- map.created.getDate()%>/<%- (map.created.getMonth() + 1)%>/<%- map.created.getFullYear() %> à <%- map.created.getHours() %>:<%- map.created.getMinutes() %> ... modifié le <%- map.lastUpdate.getDate()%>/<%- (map.lastUpdate.getMonth() + 1)%>/<%- map.lastUpdate.getFullYear() %> à <%- map.lastUpdate.getHours() %>:<%- map.lastUpdate.getMinutes() %>
+    </p>
+    <p class="thickLeftBorder size">Taille de la carte : <%- map.size %></p>
+    <p class="thickLeftBorder cmd">Commande de lancement : <span>./bomber <%- map.name %></span></p>
+
+    <div id="lightbox" class="lightbox">
+        <div class="content">
+            <div class="close" onclick="closeLightbox()">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+            </div>
+            <div class="button">
+                <button onclick="zoomMinus()" type="button" class="btn btn-primary">Zoom -</button>
+                <button onclick="zoomPlus()" type="button" class="btn btn-primary">Zoom +</button>
+            </div>
+
+            <div id="mapEditor">
+                <table>
+                    <% map.value.forEach(function(line, index) { %>
+                    <tr>
+                        <% for (var i = 0; i < line.length; i++) { %>
+
+                        <td class="square <%-classBackground[line[i]]%>"><%- line[i] %></td>
+                        <% } %>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/js/map-view.js"></script>

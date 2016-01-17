@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title><%= title %></title>
+        <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+        <link rel='stylesheet' href='/stylesheets/default.css' />
+        <link rel='stylesheet' href='/stylesheets/style.css' />
+    </head>
+    <body id="body">
+        <nav id="top-nav">
+            <div class="container-link">
+                <a href="/">BomberMap</a>
+                <form method="post" action="/search">
+                    <div class="search">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Recherche" autocomplete="off" name="search">
+                            <span class="input-group-btn">
+                                <button type="submit" class="btn btn-default" type="button"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                            </span>
+                        </div>
+                    </div>
+                </form>
+                <% if (session.user == undefined) { %>
+                <a href="/sign">Inscription</a>
+                <a href="/log">Connexion</a>
+                <% } else { %>
+                <a href="/map/create">Créer une carte</a>
+                <a href="/map">Mes maps</a>
+                <a href="/logout">Déconnexion</a>
+                <% } %>
+            </div>
+        </nav>

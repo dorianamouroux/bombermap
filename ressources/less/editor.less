@@ -1,0 +1,93 @@
+@height-nav: 50px;
+@color-nav: #0277BD;
+
+.editor {
+    display: flex;
+}
+
+#mapEditor {
+    display: flex;
+    align-items: center;
+    width: 80%;
+    margin: auto;
+    border: 1px solid grey;
+    height: 650px;
+    overflow: auto;
+    background-image: url('/images/stripe.jpg');
+
+    table {
+        margin: auto;
+
+        tr {
+            display: flex;
+            justify-content: center;
+
+            td {
+                text-indent: 100%;
+                white-space: nowrap;
+                overflow: hidden;
+                height: 50px;
+                width: 50px;
+                border: 1px solid black;
+                cursor: pointer;
+                background-size: cover;
+
+                &.floor {
+                    background-image: url('/images/editor/ground.jpg');
+                }
+                &.wall {
+                    background-image: url('/images/editor/wall.jpg');
+                }
+                &.wood {
+                    background-image: url('/images/editor/smooth.jpg');
+                }
+
+            }
+        }
+    }
+}
+
+#listItem {
+    display: flex;
+    flex-direction: column;
+    height: 650px;
+    justify-content: space-around;
+
+    .item {
+        min-width: 150px;
+        width: 100%;
+        height: 150px;
+        text-align: center;
+        line-height: 150px;
+        cursor: pointer;
+        font-size: 20px;
+        font-weight: bolder;
+        background-size: cover;
+        color: white;
+
+        &.floor {
+            background-image: url('/images/editor/ground.jpg');
+            text-shadow: 0px 0px 15px white;
+            color: black;
+        }
+
+        &.wall {
+            background-image: url('/images/editor/wall.jpg');
+            text-shadow: 0px 0px 15px black;
+        }
+
+        &.wood {
+            background-image: url('/images/editor/smooth.jpg');
+            text-shadow: 0px 0px 15px black;
+        }
+
+        &.selected {
+            border: 3px solid @color-nav;
+        }
+    }
+
+    button {
+        width: 100px;
+        margin: 0 auto;
+    }
+}

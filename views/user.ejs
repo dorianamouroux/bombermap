@@ -1,0 +1,16 @@
+<% layout('layout/layout') %>
+<h1 class="title"><%- user.pseudo %></h1>
+
+<div class="container-map">
+    <% user.maps.forEach(function(map) { %>
+    <a href="/m/<%- map.name %>" class="map">
+        <div class="hover">Voir</div>
+        <div class="container-img">
+            <div style="background-image: url('/images/maps_pic/<%- map.name %>.<%- map.extension %>');"></div>
+        </div>
+        <div class="name"><%- map.name %></div>
+        <div class="description"><%- map.description %></div>
+        <div class="size">Taille = <%- map.size %> carrés</div>
+    </a>
+    <% }) %>
+</div>

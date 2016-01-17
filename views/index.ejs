@@ -1,0 +1,15 @@
+<% layout('layout/layout') %>
+<p class="index-welcome">Bienvenue sur BomberMap, le site hébergeant les meilleurs cartes pour le célèbre jeu Bomberman, vous pouvez trouver la carte qui vous ressemble<br />Pas de classement, pas de votes, les cartes affichées en page d'accueil sont tirées de manière aléatoire :-)<br />N'hésitez pas à vous inscrire pour créer vos propres cartes, c'est très facile, vous verrez !</p>
+<div class="container-map">
+    <% maps.forEach(function(map) { %>
+    <a href="/m/<%- map.name %>" class="map">
+        <div class="hover">Voir</div>
+        <div class="container-img">
+            <div style="background-image: url('/images/maps_pic/<%- map.name %>.<%- map.extension %>');"></div>
+        </div>
+        <div class="name"><%- map.name %></div>
+        <div class="description"><%- map.description %></div>
+        <div class="size">Taille = <%- map.size %> carrés</div>
+    </a>
+    <% }) %>
+</div>

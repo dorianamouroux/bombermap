@@ -1,0 +1,69 @@
+<% layout('layout/layout') %>
+<% var classBackground = ['floor', 'wall', 'wood']; %>
+
+<div class="map-view">
+    <div class="line-top">
+        <div class="left">
+            <h1 class="name"><%- map.name %> (Edition)</h1>
+        </div>
+        <div class="right">
+            <a href="/m/<%- map.name %>"><button type="button" class="btn btn-info">Voir</button></a>
+            <a href="/map/<%- map.name %>/delete"><button type="button" class="btn btn-danger" onclick="return confirm('Supprimer ?');">Supprimer</button></a>
+        </div>
+    </div>
+
+    <div class="image border">
+        <img src="/images/maps_pic/<%- map.name %>.<%- map.extension %>" />
+        <form action="/map/<%-map.name%>/edit/upload" enctype="multipart/form-data" method="post">
+            <label for="upload">Modifier l'image</label>
+            <input type="file" onchange="this.form.submit()" name="upload" id="upload">
+        </form>
+    </div>
+    <br /><br />
+
+    <form method="post" onsubmit="return validate(this)">
+        <!-- edit description -->
+        <div class="little-form">
+            <p class="text-danger"><%- editMap.errorDescription %></p>
+            <label for="description">Description</label>
+            <textarea rows="5" name="description" class="form-control"  id="description"><%- editMap.description %></textarea>
+            <button type="submit" class="btn btn-default">Valider</button>
+        </div>
+        <!-- edit map -->
+        <div class="editor">
+            <div id="listItem">
+                <div id="selector-0" onclick="selectItem(0)" class="item floor">Sol</div>
+                <div id="selector-1" onclick="selectItem(1)" class="item wall">Mur</div>
+                <div id="selector-2" onclick="selectItem(2)" class="item wood">Mur cassable</div>
+                <button type="button" onclick="zoomPlus()" class="btn btn-info">Zoom +</button>
+                <button type="button" onclick="zoomMinus()" class="btn btn-info">Zoom -</button>
+                <button class="btn btn-default">Valider</button>
+            </div>
+            <div id="mapEditor">
+                <table>
+                    <% map.value.forEach(function(line, index) { %>
+                    <tr>
+                        <% for (var i = 0; i < line.length; i++) { %>
+
+                        <td id="square-<%-i%>-<%-index%>" class=" square <%-classBackground[line[i]]%>" onclick="editSquare(<%-i%>, <%-index%>)"><%- line[i] %></td>
+                        <% } %>
+                    </tr>
+                    <% }); %>
+                </table>
+            </div>
+            <div class="error"><%- editMap.errorMap %></div>
+            <input type="hidden" value="" name="map" id="mapForm" />
+            <div class="error"><%- editMap.global %></div>
+        </div>
+    </form>
+    <br /><br />
+
+</div>
+<script type="text/javascript">
+    <% if (uploadMap.length) { %>
+        alert("<%- uploadMap %>");
+    <% } %>
+        var map = <%- JSON.stringify(map.value) %>;
+</script>
+<script type="text/javascript" src="/js/map-edit.js"></script>
+<script type="text/javascript" src="/js/map-view.js"></script>

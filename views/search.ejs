@@ -1,0 +1,20 @@
+<% layout('layout/layout') %>
+<h1>Recherche !</h1>
+<% if (searchResult.error.length > 0) { %>
+<%- searchResult.error %>
+<% } else if (searchResult.res.length == 0) { %>
+<p>Aucun résultat :(</p>
+<% } else { %>
+<% searchResult.res.forEach(function(map) { %>
+<div class="container-map">
+    <a href="/m/<%- map.name %>" class="map">
+        <div class="hover">Voir</div>
+        <div class="container-img">
+            <div style="background-image: url('/images/maps_pic/<%- map.name %>.<%- map.extension %>');"></div>
+        </div>
+        <div class="name"><%- map.name %></div>
+        <div class="description"><%- map.description %></div>
+        <div class="size">Taille = <%- map.size %> carrés</div>
+    </a>
+</div>
+<% }); }%>
